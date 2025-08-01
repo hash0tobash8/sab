@@ -418,7 +418,7 @@ Icon.BorderSizePixel = 0
 Icon.Position = UDim2.new(0.268000007, 0, 0.5, 0)
 Icon.Size = UDim2.new(0, 15, 0, 15)
 Icon.Image = "rbxassetid://17183279677"
-contain123= container
+contain123 = container
   
     container.Container.InputBegan:Connect(function(input: InputObject)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
