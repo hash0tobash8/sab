@@ -415,14 +415,7 @@ mobile_button.AnchorPoint = Vector2.new(0, 0)
     State.TextWrapped = true
     State.TextXAlignment = Enum.TextXAlignment.Left
 
-if UserInputService.TouchEnabled then
-    -- Move icon closer to text
-    Icon.Position = UDim2.new(0.2, 0, 0.5, 0)
-    State.Position = UDim2.new(0.55, 0, 0.5, 0)
-    
-    -- Increase touch area
-    mobile_button.Size = UDim2.new(0, 140, 0, 45)
-end
+
 
     local Icon = Instance.new("ImageLabel")
     Icon.Name = "Icon"
@@ -436,6 +429,15 @@ end
     Icon.Size = UDim2.new(0, 30, 0, 30)
     Icon.Image = "rbxassetid://133495621202705"
     contain123= container
+
+if UserInputService.TouchEnabled then
+    -- Move icon closer to text
+    Icon.Position = UDim2.new(0.2, 0, 0.5, 0)
+    State.Position = UDim2.new(0.55, 0, 0.5, 0)
+    
+    -- Increase touch area
+    mobile_button.Size = UDim2.new(0, 140, 0, 45)
+end
 -- Pulse animation
 task.spawn(function()
     while Icon and Icon.Parent do
