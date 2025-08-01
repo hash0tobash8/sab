@@ -368,7 +368,8 @@ function Library:new()
     mobile_button.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
     mobile_button.BorderColor3 = Color3.fromRGB(0, 0, 0)
     mobile_button.BorderSizePixel = 0
-    mobile_button.Position = UDim2.new(0.0210955422, 0, 0.91790241, 0)
+    mobile_button.Position = UDim2.new(0.5, 0, 0.95, 0)
+mobile_button.AnchorPoint = Vector2.new(0.5, 0.5)
     mobile_button.Size = UDim2.new(0, 122, 0, 38)
     mobile_button.AutoButtonColor = false
     mobile_button.Modal = true
@@ -405,9 +406,9 @@ function Library:new()
     State.BorderColor3 = Color3.fromRGB(0, 0, 0)
     State.BorderSizePixel = 0
     State.Position = UDim2.new(0.646000028, 0, 0.5, 0)
-    State.Size = UDim2.new(0, 64, 0, 15)
+    State.Size = UDim2.new(0, 50, 0, 15)
     State.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
-    State.Text = "Open"
+    State.Text = "MOON"
     State.TextColor3 = Color3.fromRGB(255, 255, 255)
     State.TextScaled = true
     State.TextSize = 14.000
@@ -422,10 +423,61 @@ function Library:new()
     Icon.BackgroundTransparency = 1.000
     Icon.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Icon.BorderSizePixel = 0
-    Icon.Position = UDim2.new(0.268000007, 0, 0.5, 0)
-    Icon.Size = UDim2.new(0, 15, 0, 15)
+    Icon.Position = UDim2.new(0.35, 0, 0.5, 0)
+    Icon.Size = UDim2.new(0, 30, 0, 30)
     Icon.Image = "rbxassetid://133495621202705"
     contain123= container
+-- Pulse animation
+task.spawn(function()
+    while Icon and Icon.Parent do
+        TweenService:Create(Icon, TweenInfo.new(0.8, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+            Size = UDim2.new(0, 35, 0, 35)
+        }):Play()
+        task.wait(0.8)
+        
+        TweenService:Create(Icon, TweenInfo.new(0.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            Size = UDim2.new(0, 30, 0, 30)
+        }):Play()
+        task.wait(0.8)
+    end
+end)
+-- Dragging 
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+mobile_button.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = mobile_button.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+mobile_button.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.TouchMovement then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        local delta = input.Position - dragStart
+        mobile_button.Position = UDim2.new(
+            startPos.X.Scale,
+            startPos.X.Offset + delta.X,
+            startPos.Y.Scale,
+            startPos.Y.Offset + delta.Y
+        )
+    end
+end)
   
     container.Container.InputBegan:Connect(function(input: InputObject)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
