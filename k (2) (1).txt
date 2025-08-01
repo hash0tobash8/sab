@@ -222,9 +222,9 @@ function Library:visible()
     Library.enabled = not Library.enabled
 
     if Library.enabled then
-        Library.open(self)
+        self:open()
     else
-        Library.close(self)
+        self:close()
     end
 end
 
@@ -283,7 +283,7 @@ function Library:new()
     Top.BackgroundTransparency = 1.000
     Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Top.BorderSizePixel = 0
-   Top.Size = UDim2.new(1, 0, 0.15, 0) 
+   Top.Size = UDim2.new(1, 0, 0.18, 0) 
     Top.Image = ""
 
     local Logo = Instance.new("ImageLabel")
@@ -411,9 +411,10 @@ task.spawn(function()
 end)
 
 -- Click functionality
+-- Replace the existing click functionality with this:
 mobile_button.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        Library.visible(container)
+        Library:visible()
     end
 end)
 
@@ -491,7 +492,7 @@ end)
         tab.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
         tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
         tab.BorderSizePixel = 0
-        tab.Size = UDim2.new(1, 0, 0, 40)
+        tab.Size = UDim2.new(1, 0, 0, 45)
         tab.ZIndex = 2
         tab.AutoButtonColor = false
         tab.Font = Enum.Font.SourceSans
