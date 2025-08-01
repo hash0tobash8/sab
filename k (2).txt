@@ -443,10 +443,6 @@ UserInputService.InputBegan:Connect(function(input, process)
 end)
 
 
-    mobile_button.MouseButton1Click:Connect(function()
-        Library.visible(container)
-    end)
-
     local Tab = {}
 
     function Tab:update_sections()
