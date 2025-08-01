@@ -283,7 +283,7 @@ function Library:new()
     Top.BackgroundTransparency = 1.000
     Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Top.BorderSizePixel = 0
-   Top.Size = UDim2.new(1, 0, 0.08, 0) 
+   Top.Size = UDim2.new(1, 0, 0.12, 0) 
     Top.Image = ""
 
     local Logo = Instance.new("ImageLabel")
@@ -296,7 +296,7 @@ function Library:new()
     Logo.BorderSizePixel = 0
     Logo.Position = UDim2.new(0.0387367606, 0, 0.5, 0)
     Logo.Size = UDim2.new(0, 30, 0, 30)
-    Logo.Image = ""
+    Logo.Image = "rbxassetid://133495621202705"
     
     local positionX = 0.0938254446
 
@@ -307,12 +307,12 @@ function Library:new()
     TextLabel.BackgroundTransparency = 1.000
     TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
     TextLabel.BorderSizePixel = 0
-    TextLabel.Position = UDim2.new(0.0338254446, 0, 0.7, 0)
-    TextLabel.Size = UDim2.new(1 - positionX, 0, 0, 16) 
+    TextLabel.Position = UDim2.new(0.0338254446, 0, 0.5, 0)
+    TextLabel.Size = UDim2.new(1 - positionX, 0, 1, 0) 
     TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
     TextLabel.Text = getgenv().namehub
     TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TextLabel.TextScaled = false
+    TextLabel.TextScaled = true
     TextLabel.TextSize = 14.000
     TextLabel.TextWrapped = true
     TextLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -1523,7 +1523,7 @@ function Module:create_dropdown()
     local CLOSED_HEIGHT = 50
     local OPTION_HEIGHT = 23
 
-    Dropdown.selectedOption = nil -- Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€
+    Dropdown.selectedOption = nil -- Ã‘â€šÃÂµÃÂºÃ‘Æ’Ã‘â€°ÃÂ¸ÃÂ¹ ÃÂ²Ã‘â€¹ÃÂ±ÃÂ¾Ã‘â‚¬
 
     function Dropdown:open()
         open = true
@@ -1575,7 +1575,7 @@ function Module:create_dropdown()
             new_option.Parent = Options
             new_option.Text = value
 
-            -- ÐŸÐ¾Ð´ÑÐ²ÐµÑ‡Ð¸Ð²Ð°ÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ð¹ option
+            -- ÃÅ¸ÃÂ¾ÃÂ´Ã‘ÂÃÂ²ÃÂµÃ‘â€¡ÃÂ¸ÃÂ²ÃÂ°ÃÂµÃÂ¼ Ã‘â€šÃÂ¾ÃÂ»Ã‘Å’ÃÂºÃÂ¾ Ã‘â€šÃÂµÃÂºÃ‘Æ’Ã‘â€°ÃÂ¸ÃÂ¹ ÃÂ²Ã‘â€¹ÃÂ±Ã‘â‚¬ÃÂ°ÃÂ½ÃÂ½Ã‘â€¹ÃÂ¹ option
             if value == self.selectedOption then
                 new_option.TextTransparency = 0
             else
@@ -1608,7 +1608,7 @@ function Module:create_dropdown()
         end
     end
 
-    -- Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð¸Ñ€ÑƒÐµÐ¼ Ñ Ð¿ÑƒÑÑ‚Ñ‹Ð¼ Ð²Ñ‹Ð±Ð¾Ñ€Ð¾Ð¼
+    -- ÃËœÃÂ½ÃÂ¸Ã‘â€ ÃÂ¸ÃÂ°ÃÂ»ÃÂ¸ÃÂ·ÃÂ¸Ã‘â‚¬Ã‘Æ’ÃÂµÃÂ¼ Ã‘Â ÃÂ¿Ã‘Æ’Ã‘ÂÃ‘â€šÃ‘â€¹ÃÂ¼ ÃÂ²Ã‘â€¹ÃÂ±ÃÂ¾Ã‘â‚¬ÃÂ¾ÃÂ¼
     Dropdown.selectedOption = nil
     TextLabel.Text = self.name
 
@@ -1719,7 +1719,7 @@ end
 
     local section = self.section == "left" and left_section
 
-    -- ðŸ”‘ Info label encouraging user to do the keysystem
+    -- Ã°Å¸â€â€˜ Info label encouraging user to do the keysystem
     local InfoLabel = Instance.new("TextLabel")
     InfoLabel.Name = "KeyInfo"
     InfoLabel.Parent = section
@@ -1788,7 +1788,7 @@ end
     -- Save text to flags on any change
    
 
-    -- Ð ÐµÐ°Ð³Ð¸Ñ€ÑƒÐµÐ¼ Ð½Ð° Ð»ÑŽÐ±Ð¾Ðµ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ðµ Ñ‚ÐµÐºÑÑ‚Ð°
+    -- Ã ÃÂµÃÂ°ÃÂ³ÃÂ¸Ã‘â‚¬Ã‘Æ’ÃÂµÃÂ¼ ÃÂ½ÃÂ° ÃÂ»Ã‘Å½ÃÂ±ÃÂ¾ÃÂµ ÃÂ¸ÃÂ·ÃÂ¼ÃÂµÃÂ½ÃÂµÃÂ½ÃÂ¸ÃÂµ Ã‘â€šÃÂµÃÂºÃ‘ÂÃ‘â€šÃÂ°
     TextBox:GetPropertyChangedSignal("Text"):Connect(function()
         Library.Flags[self.flag] = TextBox.Text
         Library.save_flags()
