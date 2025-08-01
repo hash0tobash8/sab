@@ -368,8 +368,8 @@ function Library:new()
     mobile_button.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
     mobile_button.BorderColor3 = Color3.fromRGB(0, 0, 0)
     mobile_button.BorderSizePixel = 0
-    mobile_button.Position = UDim2.new(0.5, 0, 0.95, 0)
-mobile_button.AnchorPoint = Vector2.new(0.5, 0.5)
+    mobile_button.Position = UDim2.new(0.5, 0, 0.5, 0)
+mobile_button.AnchorPoint = Vector2.new(0, 0)
     mobile_button.Size = UDim2.new(0, 122, 0, 38)
     mobile_button.AutoButtonColor = false
     mobile_button.Modal = true
@@ -415,6 +415,15 @@ mobile_button.AnchorPoint = Vector2.new(0.5, 0.5)
     State.TextWrapped = true
     State.TextXAlignment = Enum.TextXAlignment.Left
 
+if UserInputService.TouchEnabled then
+    -- Move icon closer to text
+    Icon.Position = UDim2.new(0.2, 0, 0.5, 0)
+    State.Position = UDim2.new(0.55, 0, 0.5, 0)
+    
+    -- Increase touch area
+    mobile_button.Size = UDim2.new(0, 140, 0, 45)
+end
+
     local Icon = Instance.new("ImageLabel")
     Icon.Name = "Icon"
     Icon.Parent = mobile_button
@@ -442,40 +451,42 @@ task.spawn(function()
     end
 end)
 -- Dragging 
-local dragging
-local dragInput
-local dragStart
-local startPos
+local dragging = false
+local dragStartPos, buttonStartPos
 
 mobile_button.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+    if input.UserInputType == Enum.UserInputType.Touch then
         dragging = true
-        dragStart = input.Position
-        startPos = mobile_button.Position
+        dragStartPos = input.Position
+        buttonStartPos = mobile_button.Position
         
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
-end)
-
-mobile_button.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.TouchMovement then
-        dragInput = input
+        -- Visual feedback
+        TweenService:Create(mobile_button, TweenInfo.new(0.1), {
+            Size = UDim2.new(0, 118, 0, 36)
+        }:Play()
     end
 end)
 
 UserInputService.InputChanged:Connect(function(input)
-    if input == dragInput and dragging then
-        local delta = input.Position - dragStart
+    if dragging and input.UserInputType == Enum.UserInputType.Touch then
+        local delta = input.Position - dragStartPos
         mobile_button.Position = UDim2.new(
-            startPos.X.Scale,
-            startPos.X.Offset + delta.X,
-            startPos.Y.Scale,
-            startPos.Y.Offset + delta.Y
+            buttonStartPos.X.Scale,
+            buttonStartPos.X.Offset + delta.X,
+            buttonStartPos.Y.Scale,
+            buttonStartPos.Y.Offset + delta.Y
         )
+    end
+end)
+
+mobile_button.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        dragging = false
+        
+        -- Return to normal size
+        TweenService:Create(mobile_button, TweenInfo.new(0.1), {
+            Size = UDim2.new(0, 122, 0, 38)
+        }:Play()
     end
 end)
   
