@@ -39,7 +39,7 @@ API.script_id = Hub_Script_ID
 --// library script private
 if not getgenv().moon then
 getgenv().namehub = "Viridian | .gg/getviridian" else
-getgenv().namehub = "Moon | .gg/moondiety"
+getgenv().namehub = "     Moon | .gg/moondiety"
 end
 local UserInputService = game:GetService('UserInputService')
 local LocalPlayer = game:GetService('Players').LocalPlayer
