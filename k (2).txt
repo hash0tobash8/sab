@@ -124,13 +124,7 @@ function Library:disconnect()
     end
 end
 
-function Library:clear()
-    for _, object in CoreGui:GetChildren() do
-        if object.Name == "cac" or object.Name == "MoondietyIconGUI" then
-            object:Destroy()
-        end
-    end
-end
+
 
 function Library:exist()
     if not Library.core then return end
@@ -362,10 +356,7 @@ function Library:new()
     local tabsCorner = Instance.new("UICorner")
     tabsCorner.Parent = tabs
 
-    -- Remove the old mobile button code and replace with this:
-
--- Create toggle icon
-local mobile_button = Instance.new("TextButton")
+    local mobile_button = Instance.new("TextButton")
 mobile_button.Name = "Mobile"
 mobile_button.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
 mobile_button.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -466,6 +457,8 @@ UserInputService.InputBegan:Connect(function(input, process)
     end
 end)
 
+
+    
 
     local Tab = {}
 
